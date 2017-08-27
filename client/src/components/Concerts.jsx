@@ -12,8 +12,13 @@ const Concerts = (props) => {
     height: '400',
     speed: '10'
   }
+ const scrollTo = (pos) => {
+    return () => {
+      this.scroll.scrollToY(pos);
+      };
+    }
   const nearby = (
-    <ReactScrollbar style={scroll}>
+    <ReactScrollbar ref={(c) => { console.log(this.scroll); } style={scroll}>
       <Panel collapsible defaultExpanded header={`Nearby Concerts`}>
         <ListGroup fill>
           {props.events.map((event, i) => {
@@ -53,6 +58,7 @@ const Concerts = (props) => {
       <Tabs defaultActiveKey={1}>
         <Tab eventKey={1} title='Nearby'>{nearby}</Tab>
         <Tab eventKey={2} title='Popular'>{popular}</Tab>
+        <button>SCROLL ME</button>
       </Tabs>
     </div>
   )
